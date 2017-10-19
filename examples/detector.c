@@ -587,6 +587,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
     double time;
     char buff[256];
     char *input = buff;
+    char *filename_begin = buff[9];
     int j;
     float nms=.3;
     int output_num = 0;
@@ -629,9 +630,8 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         if (nms) do_nms_sort(boxes, probs, l.w*l.h*l.n, l.classes, nms);
         //else if (nms) do_nms_sort(boxes, probs, l.w*l.h*l.n, l.classes, nms);
         draw_detections(im, l.w*l.h*l.n, thresh, boxes, probs, masks, names, alphabet, l.classes);
-        printf(input);
         if(input){
-            save_image(im, input);
+            save_image(im, filename_begin);
         }
         else{
             save_image(im, "predictions");

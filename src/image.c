@@ -644,7 +644,7 @@ void save_image_jpg(image p, const char *name)
     if(p.c == 3) rgbgr_image(copy);
     int x,y,k;
 
-    char buff[1024];
+    char buff[256];
     sprintf(buff, "/home/gg1420000/darknet/testResult/%s.jpg", name);
 
     IplImage *disp = cvCreateImage(cvSize(p.w,p.h), IPL_DEPTH_8U, p.c);
