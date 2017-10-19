@@ -645,7 +645,7 @@ void save_image_jpg(image p, const char *name)
     int x,y,k;
 
     char buff[256];
-    sprintf(buff, "%s.jpg", name);
+    sprintf(buff, "/home/gg1420000/darknet/test/%s.jpg", name);
 
     IplImage *disp = cvCreateImage(cvSize(p.w,p.h), IPL_DEPTH_8U, p.c);
     int step = disp->widthStep;
@@ -666,7 +666,7 @@ void save_image_png(image im, const char *name)
 {
     char buff[256];
     //sprintf(buff, "%s (%d)", name, windows);
-    sprintf(buff, "%s.png", name);
+    sprintf(buff, "/home/gg1420000/darknet/test/%s.png", name);
     unsigned char *data = calloc(im.w*im.h*im.c, sizeof(char));
     int i,k;
     for(k = 0; k < im.c; ++k){

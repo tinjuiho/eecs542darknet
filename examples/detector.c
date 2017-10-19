@@ -1,4 +1,5 @@
 #include "darknet.h"
+#include "stdio.h"
 
 static int coco_ids[] = {1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,27,28,31,32,33,34,35,36,37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,67,70,72,73,74,75,76,77,78,79,80,81,82,84,85,86,87,88,89,90};
 
@@ -562,6 +563,17 @@ void validate_detector_recall(char *cfgfile, char *weightfile)
     }
 }
 
+char* concat(const char *s1, const char *s2)
+{
+    const size_t len1 = strlen(s1);
+    const size_t len2 = strlen(s2);
+    char *result = malloc(len1+len2+1);//+1 for the null-terminator
+    //in real code you would check for errors in malloc here
+    memcpy(result, s1, len1);
+    memcpy(result+len1, s2, len2+1);//+1 to copy the null-terminator
+    return result;
+}
+
 void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filename, float thresh, float hier_thresh, char *outfile, int fullscreen)
 {
     list *options = read_data_cfg(datacfg);
@@ -577,6 +589,9 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
     char *input = buff;
     int j;
     float nms=.3;
+    int output_num = 0;
+    char output_file_name_buffer[10];
+ 
     while(1){
         if(filename){
             strncpy(input, filename, 256);
@@ -586,6 +601,8 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
             input = fgets(input, 256, stdin);
             if(!input) return;
             strtok(input, "\n");
+	    snprintf(output_file_name_buffer, 10, "%d", output_num);  
+	    output_num++;
         }
         image im = load_image_color(input,0,0);
         image sized = letterbox_image(im, net->w, net->h);
@@ -612,8 +629,8 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         if (nms) do_nms_sort(boxes, probs, l.w*l.h*l.n, l.classes, nms);
         //else if (nms) do_nms_sort(boxes, probs, l.w*l.h*l.n, l.classes, nms);
         draw_detections(im, l.w*l.h*l.n, thresh, boxes, probs, masks, names, alphabet, l.classes);
-        if(outfile){
-            save_image(im, outfile);
+        if(output_file_name_buffer){
+            save_image(im, output_file_name_buffer);
         }
         else{
             save_image(im, "predictions");
