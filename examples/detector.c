@@ -587,7 +587,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
     double time;
     char buff[256];
     char *input = buff;
-    char *filename_begin = buff[9];
+    char *filename_begin;
     int j;
     float nms=.3;
     int output_num = 0;
@@ -602,6 +602,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
             input = fgets(input, 256, stdin);
             if(!input) return;
             strtok(input, "\n");
+            *filename_begin = &buff[9];
 	    snprintf(output_file_name_buffer, 10, "%d", output_num);  
 	    output_num++;
         }
