@@ -588,6 +588,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
     char buff[256];
     char *input = buff;
     char *filename_begin;
+    char *filename_end;
     int j;
     float nms=.3;
     int output_num = 0;
@@ -603,6 +604,8 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
             if(!input) return;
             strtok(input, "\n");
             filename_begin = input + 9;
+            filename_end = filename_begin + 7;
+            *filename_end = '\n';
 	    snprintf(output_file_name_buffer, 10, "%d", output_num);  
 	    output_num++;
         }
