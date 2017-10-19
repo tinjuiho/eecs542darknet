@@ -588,7 +588,6 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
     char buff[256];
     char *input = buff;
     char *filename_begin;
-    char *filename_end;
     int j;
     float nms=.3;
     int output_num = 0;
@@ -604,7 +603,6 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
             if(!input) return;
             strtok(input, "\n");
             filename_begin = input + 9;
-            *filename_begin[7] = '\n'
 	    snprintf(output_file_name_buffer, 10, "%d", output_num);  
 	    output_num++;
         }
@@ -633,7 +631,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         if (nms) do_nms_sort(boxes, probs, l.w*l.h*l.n, l.classes, nms);
         //else if (nms) do_nms_sort(boxes, probs, l.w*l.h*l.n, l.classes, nms);
         draw_detections(im, l.w*l.h*l.n, thresh, boxes, probs, masks, names, alphabet, l.classes);
-        if(input){
+        if(filename_begin){
             save_image(im, filename_begin);
         }
         else{
