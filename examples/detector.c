@@ -243,8 +243,6 @@ void validate_detector_flip(char *datacfg, char *cfgfile, char *weightfile, char
     network *net = load_network(cfgfile, weightfile, 0);
     set_batch_network(net, 2);
     fprintf(stderr, "Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
-    fprintf(stderr, "Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
-    fprintf(stderr, "Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
     srand(time(0));
 
     list *plist = get_paths(valid_images);
@@ -463,6 +461,7 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile, char *out
         }
         for(t = 0; t < nthreads && i+t-nthreads < m; ++t){
             char *path = paths[i+t-nthreads];
+            fprintf(stderr, path);
             char *id = basecfg(path);
             float *X = val_resized[t].data;
             network_predict(net, X);
