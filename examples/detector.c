@@ -461,7 +461,7 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile, char *out
         }
         for(t = 0; t < nthreads && i+t-nthreads < m; ++t){
             char *path = paths[i+t-nthreads];
-            fprintf(stderr, path);
+            printf("0000000000000");
             char *id = basecfg(path);
             float *X = val_resized[t].data;
             network_predict(net, X);
