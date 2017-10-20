@@ -327,6 +327,7 @@ void validate_detector_flip(char *datacfg, char *cfgfile, char *weightfile, char
         }
         for(t = 0; t < nthreads && i+t-nthreads < m; ++t){
             char *path = paths[i+t-nthreads];
+            printf(path);
             char *id = basecfg(path);
             copy_cpu(net->w*net->h*net->c, val_resized[t].data, 1, input.data, 1);
             flip_image(val_resized[t]);
