@@ -379,6 +379,8 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile, char *out
     network *net = load_network(cfgfile, weightfile, 0);
     set_batch_network(net, 1);
     fprintf(stderr, "Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
+    fprintf(stderr, "Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
+    fprintf(stderr, "Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
     srand(time(0));
 
     list *plist = get_paths(valid_images);
