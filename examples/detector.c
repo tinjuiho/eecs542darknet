@@ -587,7 +587,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
     double time;
     char buff[256];
     char *input = buff;
-    char *filename_begin;
+    char *filename_begin = buff;
     int j;
     float nms=.3;
     int output_num = 0;
