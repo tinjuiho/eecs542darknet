@@ -187,7 +187,6 @@ static void print_cocos(FILE *fp, char *image_path, box *boxes, float **probs, i
 
 void print_detector_detections(FILE **fps, char *id, box *boxes, float **probs, int total, int classes, int w, int h)
 {
-    printf("0000000000");
     int i, j;
     for(i = 0; i < total; ++i){
         float xmin = boxes[i].x - boxes[i].w/2. + 1;
@@ -407,7 +406,7 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile, char *out
         imagenet = 1;
         classes = 200;
     } else {
-        if(!outfile) outfile = "comp4_det_test_";
+        if(!outfile) outfile = "voc2007Class_";
         fps = calloc(classes, sizeof(FILE *));
         for(j = 0; j < classes; ++j){
             snprintf(buff, 1024, "%s/%s%s.txt", prefix, outfile, names[j]);
