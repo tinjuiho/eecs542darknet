@@ -436,8 +436,8 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile, char *out
     load_args args = {0};
     args.w = net->w;
     args.h = net->h;
-    //args.type = IMAGE_DATA;
-    args.type = LETTERBOX_DATA;
+    args.type = IMAGE_DATA;
+    // args.type = LETTERBOX_DATA;
 
     for(t = 0; t < nthreads; ++t){
         args.path = paths[i+t];
@@ -459,7 +459,7 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile, char *out
             args.resized = &buf_resized[t];
             thr[t] = load_data_in_thread(args);
         }
-        fprintf(stderr, "0000000000000");
+
         for(t = 0; t < nthreads && i+t-nthreads < m; ++t){
             char *path = paths[i+t-nthreads];
             char *id = basecfg(path);
