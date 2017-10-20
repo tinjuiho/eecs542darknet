@@ -603,6 +603,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
             if(!input) return;
             strtok(input, "\n");
             filename_begin = input + 9;
+            filename_begin[6] = '\n';
 	    snprintf(output_file_name_buffer, 10, "%d", output_num);  
 	    output_num++;
         }
