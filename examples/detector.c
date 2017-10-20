@@ -613,11 +613,15 @@ void test_detector_file(char *datacfg, char *cfgfile, char *weightfile, char *fi
     char **names = get_labels(name_list);
 
     image **alphabet = load_alphabet();
-    network net = parse_network_cfg(cfgfile);
-    if(weightfile){
-        load_weights(&net, weightfile);
-    }
-    set_batch_network(&net, 1);
+    
+    // network* net = parse_network_cfg(cfgfile);
+    // if(weightfile){
+    //     load_weights(&net, weightfile);
+    // }
+    // set_batch_network(&net, 1);
+    network *net = load_network(cfgfile, weightfile, 0);
+    set_batch_network(net, 1);
+
     srand(2222222);
     clock_t time;
     char buff[256];
