@@ -187,7 +187,7 @@ static void print_cocos(FILE *fp, char *image_path, box *boxes, float **probs, i
 
 void print_detector_detections(FILE **fps, char *id, box *boxes, float **probs, int total, int classes, int w, int h)
 {
-    fprintf(stderr, "asdfasdfasdfasfasdfasdf");
+    printf("0000000000");
     int i, j;
     for(i = 0; i < total; ++i){
         float xmin = boxes[i].x - boxes[i].w/2. + 1;
@@ -464,8 +464,6 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile, char *out
         for(t = 0; t < nthreads && i+t-nthreads < m; ++t){
             char *path = paths[i+t-nthreads];
             char *id = basecfg(path);
-            fprintf(stderr, "id");
-            fprintf(stderr, id);
             float *X = val_resized[t].data;
             network_predict(net, X);
             int w = val[t].w;
