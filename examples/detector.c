@@ -587,8 +587,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
     double time;
     char buff[256];
     char *input = buff;
-    char buff2[256] = "predictions";
-    char *filename_begin = buff2[256];
+    char *filename_begin;
     int j;
     float nms=.3;
     int output_num = 0;
@@ -635,7 +634,11 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         draw_detections(im, l.w*l.h*l.n, thresh, boxes, probs, masks, names, alphabet, l.classes);
         filename_begin[6] = '\0';
         if(filename_begin){
-            save_image(im, filename_begin);
+            if(filename){
+                save_image(im, "predictions");
+            }else{
+                save_image(im, filename_begin);
+            }
         }
         else{
             save_image(im, "predictions");
