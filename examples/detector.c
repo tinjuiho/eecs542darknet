@@ -650,7 +650,7 @@ void test_detector_file(char *datacfg, char *cfgfile, char *weightfile, char *fi
         //image sized2 = resize_max(im, net.w);
         //image sized = crop_image(sized2, -((net.w - sized2.w)/2), -((net.h - sized2.h)/2), net.w, net.h);
         //resize_network(&net, sized.w, sized.h);
-        layer l = net.layers[net.n-1];
+        layer l = net->layers[net.n-1];
 
         box *boxes = calloc(l.w*l.h*l.n, sizeof(box));
         float **probs = calloc(l.w*l.h*l.n, sizeof(float *));
