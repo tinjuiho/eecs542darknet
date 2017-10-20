@@ -1,8 +1,8 @@
-classes= 20
+classes= 80
 train  = /home/pjreddie/data/coco/trainvalno5k.txt
 #valid  = coco_testdev
 valid = /home/gg1420000/darknet/input.txt
-names = data/voc.names
+names = data/coco.names
 backup = /home/gg1420000/darknet/results
 eval=voc
 
