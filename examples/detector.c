@@ -613,7 +613,7 @@ void test_detector_file(char *datacfg, char *cfgfile, char *weightfile, char *fi
     char **names = get_labels(name_list);
 
     image **alphabet = load_alphabet();
-    
+
     // network* net = parse_network_cfg(cfgfile);
     // if(weightfile){
     //     load_weights(&net, weightfile);
@@ -644,7 +644,8 @@ void test_detector_file(char *datacfg, char *cfgfile, char *weightfile, char *fi
         
         
         image im = load_image_color(input,0,0);
-        image sized = letterbox_image(im, net.w, net.h);
+        // image sized = letterbox_image(im, net.w, net.h);
+        image sized = letterbox_image(im, net->w, net->h);
         //image sized = resize_image(im, net.w, net.h);
         //image sized2 = resize_max(im, net.w);
         //image sized = crop_image(sized2, -((net.w - sized2.w)/2), -((net.h - sized2.h)/2), net.w, net.h);
