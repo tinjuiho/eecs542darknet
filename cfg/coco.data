@@ -4,5 +4,5 @@ train  = /home/pjreddie/data/coco/trainvalno5k.txt
 valid = /home/gg1420000/darknet/input.txt
 names = data/coco.names
 backup = /home/gg1420000/darknet/results
-eval=coco
+eval=voc
 
