@@ -3,4 +3,4 @@ train  = /home/pjreddie/data/voc/train.txt
 valid = /home/gg1420000/darknet/input.txt
 names = data/voc.names
 backup = /home/gg1420000/darknet/results
-
+eval=voc
